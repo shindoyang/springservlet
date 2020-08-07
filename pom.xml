@@ -7,12 +7,36 @@
     <groupId>org.shindo</groupId>
     <artifactId>springservlet</artifactId>
     <version>1.0.0</version>
-
+    <packaging>war</packaging>
 
     <properties>
         <!--指定编码方式-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <!-- Servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope><!--只需要参与编译，无须参与打包-->
+        </dependency>
+        <!-- jsp -->
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--jstl-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>runtime</scope><!--只是运行时需要，无须参与编译-->
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -33,6 +57,15 @@
                 <version>2.18.1</version>
                 <configuration>
                     <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!--Tomcat-->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/${project.artifactId}</path>
                 </configuration>
             </plugin>
         </plugins>
